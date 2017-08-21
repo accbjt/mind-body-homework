@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types'; // eslint-disable-line
 import graph from '../assets/graph.png';
 import sparkLine from '../assets/spark_line.png';
 import pencil from '../assets/pencil_icons.png';
+import { convertNumberWithCommas } from '../services/helpers';
 
 const Container = styled.div`
   display: inline-block;
@@ -94,40 +95,58 @@ const CurrentMonthlyGraphArea = styled.div`
 const More = styled.p`
   font-size: 10px;
   margin: 5px 20px;
+  cursor: pointer;
 `;
 
-const SalesByMonthCard = ({ name }) => {
-  return (
-    <Container>
-      <Title>
-        <span>{name}</span>
-        <PencilBox>
-          <Pencil />
-        </PencilBox>
-      </Title>
-      <SaleByMonth>Sales by month</SaleByMonth>
-      <GraphImg src={graph} />
-      <CurrentMonthlyContainer>
-        <CurrentMonthlyTextArea>
-          <p>Total Monthly</p>
-          <p>Sales</p>
-        </CurrentMonthlyTextArea>
-        <CurrentMonthlyCenter>
-          <p>Current</p>
-          <p>$23,483</p>
-        </CurrentMonthlyCenter>
-        <CurrentMonthlyGraphArea>
-          <p>1 - Year</p>
-          <img src={sparkLine} alt="Graph Line" />
-        </CurrentMonthlyGraphArea>
-      </CurrentMonthlyContainer>
-      <More>more</More>
-    </Container>
-  );
-};
+class SalesByMonthCard extends Component {
+  componentWillMount() {
+    this.props.fetchData()
+  }
+
+  render() {
+    debugger
+    return (
+      <div>
+        {this.props.cards.map(({
+          Name,
+          TotalMonthlySales,
+        }, i) => {
+          return (
+            <Container key={`${i}-alkdjaldj`}>
+              <Title>
+                <span>{Name}</span>
+                <PencilBox>
+                  <Pencil />
+                </PencilBox>
+              </Title>
+              <SaleByMonth>Sales by month</SaleByMonth>
+              <GraphImg src={graph} />
+              <CurrentMonthlyContainer>
+                <CurrentMonthlyTextArea>
+                  <p>Total Monthly</p>
+                  <p>Sales</p>
+                </CurrentMonthlyTextArea>
+                <CurrentMonthlyCenter>
+                  <p>Current</p>
+                  <p>{`$${convertNumberWithCommas(TotalMonthlySales)}`}</p>
+                </CurrentMonthlyCenter>
+                <CurrentMonthlyGraphArea>
+                  <p>1 - Year</p>
+                  <img src={sparkLine} alt="Graph Line" />
+                </CurrentMonthlyGraphArea>
+              </CurrentMonthlyContainer>
+              <More onClick={this.props.fetchMoreData}>more</More>
+            </Container>
+          );
+        })}
+      </div>
+    );
+  }
+}
 
 SalesByMonthCard.propTypes = {
-  name: PropTypes.string.isRequired,
+  fetchData: PropTypes.func.isRequired,
+  fetchMoreData: PropTypes.func.isRequired,
 };
 
 export default SalesByMonthCard;

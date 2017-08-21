@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { Component } from 'react';
-import SalesByMonthCard from './components/SalesByMonthCard'
+import SalesByMonthCardContainer from './containers/SalesByMonthCardContainer'
 import mock from './business_overview.png';
 import logo from './assets/logo.png';
 import plus from './assets/plus_icon.png';
@@ -118,14 +118,10 @@ class App extends Component {
             display: 'inline-block',
             verticalAlign: 'top',
             padding: '0 10px',
+            width: '70%',
           }}>
 
-            { ['Yoga Classes', 'Yoga Privates', 'Yoga Duets'].map((item, i) => {
-              return (
-                <SalesByMonthCard name={item} key={i+item.toLowerCase().replace(' ', '-')}/>
-              )
-            })}
-
+            <SalesByMonthCardContainer />
             <div style={{
               position: 'relative',
               margin: '18px 0 0 0px',
