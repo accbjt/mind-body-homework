@@ -15,3 +15,12 @@ export const moreCardData = (state = [], action) => {
       return state;
   }
 };
+
+export const hideMore = (state = true, action) => {
+  switch (action.type) {
+    case 'HIDE_MORE':
+      return action.isHidden;
+    default:
+      return state;
+  }
+};

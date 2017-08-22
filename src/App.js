@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import SalesByMonthCardContainer from './containers/SalesByMonthCardContainer'
-import mock from './business_overview.png';
+import mock from './business_overview_expanded.png';
 import logo from './assets/logo.png';
 import plus from './assets/plus_icon.png';
 import graph from './assets/graph.png';
@@ -52,7 +52,7 @@ class App extends Component {
       }}>
         <div className="App-header">
           <img src={logo} style={{position: 'absolute', top: '10px', left: '14px'}}/>
-          {/* <img src={mock} /> */}
+          <img src={mock} style={{position: 'absolute', opacity: '0.2'}} />
         </div>
         <div>
           <div style={{
@@ -93,7 +93,6 @@ class App extends Component {
           </ul>
         </div>
         <div style={{
-          height: '100%',
           background: 'linear-gradient(to right, #dfdfd5 0%,#f4f4ee 10%, #f4f4ee 90%,#dfdfd5 100%)',
         }}>
         <div style={{margin: '0 57px 0 87px', paddingTop: '25px', display: 'inline-block'}}>

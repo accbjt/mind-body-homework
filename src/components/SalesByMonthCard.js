@@ -84,6 +84,7 @@ const CurrentMonthlyGraphArea = styled.div`
   padding: 2px 0px;
   display: inline-block;
   vertical-align: top;
+  height: 17px;
 
   & p {
     font-size: 8px;
@@ -98,7 +99,90 @@ const More = styled.p`
   cursor: pointer;
 `;
 
+const MoreCardContainer = styled.div`
+  padding: 0 20px;
+
+  & p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 80px;
+  }
+`;
+
+const MoreTextArea = CurrentMonthlyTextArea.extend`
+  margin-right: 7px;
+`;
+
+const MoreText = CurrentMonthlyTextArea.extend`
+  margin-right: 0px;
+  width: 50px;
+`;
+
+const MoreTitleContainer = MoreCardContainer.extend`
+  padding: 0 20px;
+  font-weight: bolder;
+  color: #b5b4aa;
+`;
+
+const MoreTitleRowThree = MoreText.extend`
+  text-align: center;
+  width: 65px;
+
+  & p {
+    width: 100%;
+  }
+`;
+
+const MoreCardDataContainer = styled.div`
+  padding: 15px 0px 5px 0px;
+`;
+
+const MoreCardData = ({ data, programId, changeHideMore }) => {
+  const currentData = data.filter(item => item.ProgramID === programId);
+
+  return (
+    <MoreCardDataContainer>
+      <MoreTitleContainer>
+        <MoreTextArea>
+          <p>Price Name</p>
+        </MoreTextArea>
+        <MoreText>
+          <p>Current</p>
+        </MoreText>
+        <MoreTitleRowThree>
+          <p>1 - year</p>
+        </MoreTitleRowThree>
+      </MoreTitleContainer>
+
+      {currentData.map(({
+        Name,
+        Sales,
+      }) => (
+        <MoreCardContainer key={`${programId}-${Name}`}>
+          <MoreTextArea>
+            <p>{Name}</p>
+          </MoreTextArea>
+          <MoreText>
+            <p>{`$${convertNumberWithCommas(Sales)}`}</p>
+          </MoreText>
+          <CurrentMonthlyGraphArea>
+            <img src={sparkLine} alt="Graph Line" />
+          </CurrentMonthlyGraphArea>
+        </MoreCardContainer>
+      ))}
+      <More onClick={changeHideMore}>less</More>
+    </MoreCardDataContainer>
+  );
+};
+
+MoreCardData.propTypes = {
+  data: PropTypes.shape({}).isRequired,
+  programId: PropTypes.number.isRequired,
+};
+
 class SalesByMonthCard extends Component {
+
   componentWillMount() {
     this.props.fetchData()
   }
@@ -110,9 +194,10 @@ class SalesByMonthCard extends Component {
         {this.props.cards.map(({
           Name,
           TotalMonthlySales,
-        }, i) => {
+          ProgramID,
+        }) => {
           return (
-            <Container key={`${i}-alkdjaldj`}>
+            <Container key={`${ProgramID}-${Name}`}>
               <Title>
                 <span>{Name}</span>
                 <PencilBox>
@@ -135,7 +220,15 @@ class SalesByMonthCard extends Component {
                   <img src={sparkLine} alt="Graph Line" />
                 </CurrentMonthlyGraphArea>
               </CurrentMonthlyContainer>
-              <More onClick={this.props.fetchMoreData}>more</More>
+              {
+                this.props.moreCardData.length > 0 && !this.props.hideMore && <MoreCardData
+                  data={this.props.moreCardData}
+                  programId={ProgramID}
+                  {...this.props}
+                />
+              }
+
+              { this.props.hideMore && <More onClick={this.props.fetchMoreData}>more</More> }
             </Container>
           );
         })}

@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import SalesByMonthCard from '../components/SalesByMonthCard';
-import { fetchCardData, fetchMoreCardData } from '../store/actions';
+import { fetchCardData, fetchMoreCardData, hideMore } from '../store/actions';
 
 const mapStateToProps = (state) => {
   return {
     cards: state.cards || [],
-    moreCardData: state.cards || [],
+    moreCardData: state.moreCardData || [],
+    hideMore: state.hideMore,
   };
 };
 
@@ -15,9 +16,12 @@ const mapDispatchToProps = dispatch => {
       dispatch(fetchCardData());
     },
     fetchMoreData: () => {
-      debugger
       dispatch(fetchMoreCardData());
+      dispatch(hideMore(false));
     },
+    changeHideMore: () => {
+      dispatch(hideMore(true));
+    }
   };
 };
 

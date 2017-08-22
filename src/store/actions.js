@@ -1,14 +1,21 @@
 export const loadCards = (data) => {
   return {
     type: 'LOAD_CARDS',
-    data
+    data,
   }
 };
 
 export const loadMoreCardsData = (data) => {
   return {
     type: 'LOAD_MORE_CARDS_DATA',
-    data
+    data,
+  }
+};
+
+export const hideMore = (bool) => {
+  return {
+    type: 'HIDE_MORE',
+    isHidden: bool,
   }
 };
 
