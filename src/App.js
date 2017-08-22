@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import SalesByMonthCardContainer from './containers/SalesByMonthCardContainer'
+import NewFormContainer from './containers/NewFormContainer'
 import mock from './business_overview_expanded.png';
 import logo from './assets/logo.png';
 import plus from './assets/plus_icon.png';
@@ -52,7 +53,7 @@ class App extends Component {
       }}>
         <div className="App-header">
           <img src={logo} style={{position: 'absolute', top: '10px', left: '14px'}}/>
-          <img src={mock} style={{position: 'absolute', opacity: '0.2'}} />
+          {/* <img src={mock} style={{position: 'absolute', opacity: '0.2'}} /> */}
         </div>
         <div>
           <div style={{
@@ -120,6 +121,7 @@ class App extends Component {
             width: '70%',
           }}>
 
+            <NewFormContainer />
             <SalesByMonthCardContainer />
             <div style={{
               position: 'relative',

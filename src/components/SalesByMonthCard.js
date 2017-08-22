@@ -6,6 +6,8 @@ import sparkLine from '../assets/spark_line.png';
 import pencil from '../assets/pencil_icons.png';
 import { convertNumberWithCommas } from '../services/helpers';
 
+import MoreCardsData from './MoreCardsData';
+
 const Container = styled.div`
   display: inline-block;
   width: 242px;
@@ -99,88 +101,6 @@ const More = styled.p`
   cursor: pointer;
 `;
 
-const MoreCardContainer = styled.div`
-  padding: 0 20px;
-
-  & p {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    width: 80px;
-  }
-`;
-
-const MoreTextArea = CurrentMonthlyTextArea.extend`
-  margin-right: 7px;
-`;
-
-const MoreText = CurrentMonthlyTextArea.extend`
-  margin-right: 0px;
-  width: 50px;
-`;
-
-const MoreTitleContainer = MoreCardContainer.extend`
-  padding: 0 20px;
-  font-weight: bolder;
-  color: #b5b4aa;
-`;
-
-const MoreTitleRowThree = MoreText.extend`
-  text-align: center;
-  width: 65px;
-
-  & p {
-    width: 100%;
-  }
-`;
-
-const MoreCardDataContainer = styled.div`
-  padding: 15px 0px 5px 0px;
-`;
-
-const MoreCardData = ({ data, programId, changeHideMore }) => {
-  const currentData = data.filter(item => item.ProgramID === programId);
-
-  return (
-    <MoreCardDataContainer>
-      <MoreTitleContainer>
-        <MoreTextArea>
-          <p>Price Name</p>
-        </MoreTextArea>
-        <MoreText>
-          <p>Current</p>
-        </MoreText>
-        <MoreTitleRowThree>
-          <p>1 - year</p>
-        </MoreTitleRowThree>
-      </MoreTitleContainer>
-
-      {currentData.map(({
-        Name,
-        Sales,
-      }) => (
-        <MoreCardContainer key={`${programId}-${Name}`}>
-          <MoreTextArea>
-            <p>{Name}</p>
-          </MoreTextArea>
-          <MoreText>
-            <p>{`$${convertNumberWithCommas(Sales)}`}</p>
-          </MoreText>
-          <CurrentMonthlyGraphArea>
-            <img src={sparkLine} alt="Graph Line" />
-          </CurrentMonthlyGraphArea>
-        </MoreCardContainer>
-      ))}
-      <More onClick={changeHideMore}>less</More>
-    </MoreCardDataContainer>
-  );
-};
-
-MoreCardData.propTypes = {
-  data: PropTypes.shape({}).isRequired,
-  programId: PropTypes.number.isRequired,
-};
-
 class SalesByMonthCard extends Component {
 
   componentWillMount() {
@@ -188,13 +108,13 @@ class SalesByMonthCard extends Component {
   }
 
   render() {
-    debugger
     return (
       <div>
         {this.props.cards.map(({
           Name,
           TotalMonthlySales,
           ProgramID,
+          isVisable
         }) => {
           return (
             <Container key={`${ProgramID}-${Name}`}>
@@ -221,7 +141,7 @@ class SalesByMonthCard extends Component {
                 </CurrentMonthlyGraphArea>
               </CurrentMonthlyContainer>
               {
-                this.props.moreCardData.length > 0 && !this.props.hideMore && <MoreCardData
+                this.props.moreCardData.length > 0 && <MoreCardsData
                   data={this.props.moreCardData}
                   programId={ProgramID}
                   {...this.props}
