@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import SalesByMonthCardContainer from './containers/SalesByMonthCardContainer'
 import NewFormContainer from './containers/NewFormContainer'
+import OverviewSection from './components/OverviewSection'
 import mock from './business_overview_expanded.png';
 import logo from './assets/logo.png';
 import plus from './assets/plus_icon.png';
@@ -53,7 +54,6 @@ class App extends Component {
       }}>
         <div className="App-header">
           <img src={logo} style={{position: 'absolute', top: '10px', left: '14px'}}/>
-          {/* <img src={mock} style={{position: 'absolute', opacity: '0.2'}} /> */}
         </div>
         <div>
           <div style={{
@@ -123,94 +123,7 @@ class App extends Component {
 
             <NewFormContainer />
             <SalesByMonthCardContainer />
-            <div style={{
-              position: 'relative',
-              margin: '18px 0 0 0px',
-            }}>
-              <div style={{
-                position: 'absolute',
-                borderBottom: '1px solid #d5d4c6',
-                top: '36px',
-                width: '100%',
-              }}></div>
-              <div style={{
-                display: 'inline-block',
-              }}>
-                <ul style={{
-                  padding: '0px 23px 0px 0px',
-                  fontSize: '13px',
-                  listStyle: 'none',
-                }}>
-                  <li style={{
-                    marginBottom: '23px',
-                  }}>All Programs</li>
-                  <li style={{
-                    marginBottom: '16px',
-                  }}>Open Practice
-                  <p style={{
-                    margin: '0',
-                    fontSize: '9px',
-                  }}>more</p></li>
-                  <li>Yoga Videos
-                  <p style={{
-                    margin: '0',
-                    fontSize: '9px',
-                  }}>more</p></li>
-                </ul>
-              </div>
-              <div style={{
-                fontSize: '13px',
-                display: 'inline-block',
-                verticalAlign: 'top',
-              }}>
-                <ul style={{
-                  padding: '0',
-                  listStyle: 'none',
-                }}>
-                  <li style={{
-                    paddingRight: '22px',
-                    marginBottom: '23px',
-                    marginTop: '17px',
-                    fontSize: '10px',
-                  }}>
-                    Monthly Sales
-                  </li>
-                  <li style={{
-                    paddingRight: '31px',
-                    marginBottom: '29px',
-                  }}>$572.00</li>
-                  <li style={{
-                    paddingRight: '31px',
-                  }}>$391.32</li>
-                </ul>
-              </div>
-              <div style={{
-                fontSize: '13px',
-                display: 'inline-block',
-                verticalAlign: 'top',
-              }}>
-                <ul style={{
-                  padding: '0',
-                  listStyle: 'none',
-                }}>
-                  <li style={{
-                    paddingRight: '22px',
-                    marginBottom: '23px',
-                    marginTop: '17px',
-                    fontSize: '10px',
-                  }}>
-                    Monthly Attendance
-                  </li>
-                  <li style={{
-                    paddingRight: '31px',
-                    marginBottom: '29px',
-                  }}>276 visits</li>
-                  <li style={{
-                    paddingRight: '31px',
-                  }}>82 views</li>
-                </ul>
-              </div>
-            </div>
+            <OverviewSection />
           </div>
         </div>
       </div>
