@@ -95,59 +95,50 @@ const CurrentMonthlyGraphArea = styled.div`
   }
 `;
 
-const More = styled.p`
-  font-size: 10px;
-  margin: 5px 20px;
-  cursor: pointer;
-`;
-
 class SalesByMonthCard extends Component {
-
   componentWillMount() {
-    this.props.fetchData()
+    this.props.fetchData();
   }
 
   render() {
     return (
       <div>
-        {this.props.cards.map(({
+        { this.props.cards.map(({
           Name,
           TotalMonthlySales,
           ProgramID,
-          isVisable
-        }) => {
-          return (
-            <Container key={`${ProgramID}-${Name}`}>
-              <Title>
-                <span>{Name}</span>
-                <PencilBox>
-                  <Pencil />
-                </PencilBox>
-              </Title>
-              <SaleByMonth>Sales by month</SaleByMonth>
-              <GraphImg src={graph} />
-              <CurrentMonthlyContainer>
-                <CurrentMonthlyTextArea>
-                  <p>Total Monthly</p>
-                  <p>Sales</p>
-                </CurrentMonthlyTextArea>
-                <CurrentMonthlyCenter>
-                  <p>Current</p>
-                  <p>{`$${convertNumberWithCommas(TotalMonthlySales)}`}</p>
-                </CurrentMonthlyCenter>
-                <CurrentMonthlyGraphArea>
-                  <p>1 - Year</p>
-                  <img src={sparkLine} alt="Graph Line" />
-                </CurrentMonthlyGraphArea>
-              </CurrentMonthlyContainer>
-              <MoreCardsData
-                data={this.props.moreCardData}
-                programId={ProgramID}
-                {...this.props}
-              />
-            </Container>
-          );
-        })}
+        }) => (
+          <Container key={`${ProgramID}-${Name}`}>
+            <Title>
+              <span>{Name}</span>
+              <PencilBox>
+                <Pencil />
+              </PencilBox>
+            </Title>
+            <SaleByMonth>Sales by month</SaleByMonth>
+            <GraphImg src={graph} />
+            <CurrentMonthlyContainer>
+              <CurrentMonthlyTextArea>
+                <p>Total Monthly</p>
+                <p>Sales</p>
+              </CurrentMonthlyTextArea>
+              <CurrentMonthlyCenter>
+                <p>Current</p>
+                <p>{`$${convertNumberWithCommas(TotalMonthlySales)}`}</p>
+              </CurrentMonthlyCenter>
+              <CurrentMonthlyGraphArea>
+                <p>1 - Year</p>
+                <img src={sparkLine} alt="Graph Line" />
+              </CurrentMonthlyGraphArea>
+            </CurrentMonthlyContainer>
+            <MoreCardsData
+              data={this.props.moreCardData}
+              programId={ProgramID}
+              {...this.props}
+            />
+          </Container>
+        ))
+        }
       </div>
     );
   }
@@ -155,7 +146,8 @@ class SalesByMonthCard extends Component {
 
 SalesByMonthCard.propTypes = {
   fetchData: PropTypes.func.isRequired,
-  fetchMoreData: PropTypes.func.isRequired,
+  cards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  moreCardData: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default SalesByMonthCard;

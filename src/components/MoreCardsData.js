@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types'; // eslint-disable-line
 import { convertNumberWithCommas } from '../services/helpers';
 import sparkLine from '../assets/spark_line.png';
 
@@ -96,7 +97,7 @@ class MoreCardsData extends Component {
   }
 
   render() {
-    const { data, programId, changeHideMore } = this.props;
+    const { data, programId } = this.props;
     const currentData = data.filter(item => item.ProgramID === programId);
 
     if (this.state.isVisible) {
@@ -142,7 +143,9 @@ class MoreCardsData extends Component {
 }
 
 MoreCardsData.propTypes = {
-
+  fetchMoreData: PropTypes.func.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  programId: PropTypes.number.isRequired,
 };
 
 export default MoreCardsData;
