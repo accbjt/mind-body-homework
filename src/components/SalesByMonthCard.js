@@ -63,7 +63,7 @@ const CurrentMonthlyContainer = styled.div`
 `;
 
 const CurrentMonthlyTextArea = styled.div`
-  padding: 4px 0px;
+  padding: 4px 0 12px 0px;;
   display: inline-block;
   margin-right: 34px;
 
@@ -140,15 +140,11 @@ class SalesByMonthCard extends Component {
                   <img src={sparkLine} alt="Graph Line" />
                 </CurrentMonthlyGraphArea>
               </CurrentMonthlyContainer>
-              {
-                this.props.moreCardData.length > 0 && <MoreCardsData
-                  data={this.props.moreCardData}
-                  programId={ProgramID}
-                  {...this.props}
-                />
-              }
-
-              { this.props.hideMore && <More onClick={this.props.fetchMoreData}>more</More> }
+              <MoreCardsData
+                data={this.props.moreCardData}
+                programId={ProgramID}
+                {...this.props}
+              />
             </Container>
           );
         })}
