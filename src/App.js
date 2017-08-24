@@ -78,6 +78,7 @@ const NewProgramButton = styled.div`
   border-radius: 5px;
   background-image: linear-gradient(#bbd69f 0%, #9cc087 100%);
   box-shadow: inset 0px 1px 0px 0px #d6f3ba;
+  cursor: pointer;
 `
 
 const NewProgramText = styled.p`
@@ -152,7 +153,7 @@ class App extends Component {
         </ServiceSection>
         <ProgramSection>
           <NewProgramButtonContainer>
-            <NewProgramButton>
+            <NewProgramButton onClick={this.props.showForm}>
               <img src={plus} />
             </NewProgramButton>
             <NewProgramText>New Program</NewProgramText>

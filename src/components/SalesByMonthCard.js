@@ -37,6 +37,7 @@ const Pencil = styled.div`
   background-image: url(${pencil});
   width: 20px;
   height: 15px;
+  cursor: pointer;
 
   &:hover {
     background-position: 0 -17px;

@@ -19,6 +19,20 @@ export const hideMore = (bool) => {
   }
 };
 
+export const formIsVisible = (bool) => {
+  return {
+    type: 'FORM_VISIBLE',
+    isVisible: bool,
+  }
+}
+
+export const addNewCard = (data) => {
+  return {
+    type: 'ADD_CARD',
+    data,
+  }
+}
+
 export const fetchCardData = () => {
   return async (dispatch) => {
     try {
