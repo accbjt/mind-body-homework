@@ -4,6 +4,8 @@ import styled from 'styled-components';
 const MainContainer = styled.div`
   position: relative;
   margin: 18px 0 0 0px;
+  padding: 0px 10px;
+  font-weight: bolder;
 `;
 
 const Seperator = styled.div`
@@ -36,6 +38,7 @@ const UlSectionOne = styled.ul`
 
 const UlSectionOneLiOne = styled.li`
   margin-bottom: 23px;
+  color: #98988c;
 `;
 
 const UlSectionTwo = styled.ul`
@@ -52,6 +55,7 @@ const UlSectionTwoLiOne = styled.li`
   margin-bottom: 23px;
   margin-top: 17px;
   font-size: 10px;
+  color: #98988c;
 `;
 
 const UlSectionTwoLiTwo = styled.li`

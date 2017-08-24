@@ -120,7 +120,7 @@ const Close = styled.div`
   right: -10px;
   top: -15px;
   background: white;
-  border: 1px solid #8290a1;
+  border: 1px solid #c8c8c3;
   border-radius: 18px;
   width: 30px;
   height: 30px;
