@@ -40,7 +40,7 @@ export const fetchMoreCardData = () => (
   async (dispatch, getState) => {
     const state = getState();
 
-    if (state.moreCardData.length !== 0) {
+    if (state.moreCardData.length === 0) {
       try {
         const response = await fetch('https://api.myjson.com/bins/47axv');
         response.json().then((data) => {
