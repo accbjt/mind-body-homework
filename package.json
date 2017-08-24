@@ -1,8 +1,8 @@
 {
   "name": "mind-body-homework",
+  "homepage" : "http://accbjt.github.io/mindbody",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://accbjt.github.io/mindbody",
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

@@ -10,10 +10,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(
   combineReducers(reducers),
-  compose(
-    applyMiddleware(thunkMiddleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),// eslint-disable-line
-  ),
+  compose(applyMiddleware(thunkMiddleware)),
 );
 
 ReactDOM.render(
