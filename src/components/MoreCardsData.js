@@ -35,6 +35,7 @@ const TitleColOne = styled.div`
 const TitleColTwo = TitleColOne.extend`
   margin-right: 0px;
   width: 50px;
+  text-align: left;
 `;
 
 const TitleColThree = TitleColOne.extend`
@@ -58,6 +59,7 @@ const MoreTextColOne = styled.div`
 
 const MoreTextColTwo = MoreTextColOne.extend`
   width: 38px;
+  text-align: left;
 `;
 
 const Graph = styled.div`
