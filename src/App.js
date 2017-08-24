@@ -22,6 +22,11 @@ const Logo = styled.img`
   position: absolute;
   top: 10px;
   left: 14px;
+
+  @media (max-width:1100px) and (min-width:400px) {
+    position: initial;
+    margin-top: 20px;
+  }
 `;
 
 const TopBar = styled.div`
@@ -100,7 +105,7 @@ const CardSectionContainer = styled.div`
   display: inline-block;
   vertical-align: top;
   padding: 0 10px;
-  width: 80%;
+  width: 75%;
 
   @media (max-width:1100px) and (min-width:400px) {
     width: 100%;
@@ -137,7 +142,7 @@ class App extends Component {
   render() {
     return (
       <AppContainer>
-        <div>
+        <div style={{textAlign: 'center'}}>
           <Logo src={logo} />
         </div>
         <div>

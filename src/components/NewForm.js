@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types'; // eslint-disable-line
 
 const Form = styled.form`
   width: 400px;
@@ -114,6 +115,19 @@ const MultiSelect = styled.select`
   box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
 `;
 
+const Close = styled.div`
+  position: absolute;
+  right: -10px;
+  top: -15px;
+  background: white;
+  border: 1px solid #8290a1;
+  border-radius: 18px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+`;
+
 class NewForm extends React.Component {
   constructor(props) {
     super(props);
@@ -127,6 +141,8 @@ class NewForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.closeForm = this.closeForm.bind(this);
+    this.resetForm = this.resetForm.bind(this);
   }
 
   handleChange(e) {
@@ -143,6 +159,10 @@ class NewForm extends React.Component {
     e.preventDefault();
 
     this.props.createNewProgram(this.state);
+    this.resetForm();
+  }
+
+  resetForm() {
     this.setState({
       ProgramType: '',
       ProgramName: '',
@@ -152,12 +172,18 @@ class NewForm extends React.Component {
     });
   }
 
+  closeForm() {
+    this.props.closeForm();
+    this.resetForm();
+  }
+
   render() {
     if (this.props.isVisible) {
       return (
         <div>
           <Form onSubmit={this.handleSubmit}>
             <FormHeader>
+              <Close onClick={this.closeForm}>X</Close>
               <h1>New Program</h1>
               <span>Add a new program to your organization and keep track of your sales.</span>
             </FormHeader>
@@ -226,5 +252,11 @@ class NewForm extends React.Component {
     return null;
   }
 }
+
+NewForm.propTypes = {
+  createNewProgram: PropTypes.func.isRequired,
+  closeForm: PropTypes.func.isRequired,
+  isVisible: PropTypes.bool.isRequired,
+};
 
 export default NewForm;
