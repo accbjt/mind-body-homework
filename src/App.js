@@ -69,6 +69,11 @@ const NewProgramButtonContainer = styled.div`
   margin: 0 57px 0 87px;
   padding-top: 25px;
   display: inline-block;
+
+  @media (max-width:1100px) and (min-width:400px) {
+    display: block;
+    text-align: center;
+  }
 `
 
 const NewProgramButton = styled.div`
@@ -95,7 +100,12 @@ const CardSectionContainer = styled.div`
   display: inline-block;
   vertical-align: top;
   padding: 0 10px;
-  width: 70%;
+  width: 80%;
+
+  @media (max-width:1100px) and (min-width:400px) {
+    width: 100%;
+    text-align: center;
+  }
 `;
 
 const ServiceSection = styled.div`

@@ -9,6 +9,13 @@ import { convertNumberWithCommas } from '../services/helpers';
 import MoreCardsData from './MoreCardsData';
 
 const Container = styled.div`
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  padding: 10px;
+`;
+
+const CardsContainer = styled.div`
   display: inline-block;
   width: 242px;
   padding: 18px 0px 0px;
@@ -103,13 +110,13 @@ class SalesByMonthCard extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         { this.props.cards.map(({
           Name,
           TotalMonthlySales,
           ProgramID,
         }) => (
-          <Container key={`${ProgramID}-${Name}`}>
+          <CardsContainer key={`${ProgramID}-${Name}`}>
             <Title>
               <span>{Name}</span>
               <PencilBox>
@@ -137,10 +144,10 @@ class SalesByMonthCard extends Component {
               programId={ProgramID}
               {...this.props}
             />
-          </Container>
+          </CardsContainer>
         ))
         }
-      </div>
+      </Container>
     );
   }
 }

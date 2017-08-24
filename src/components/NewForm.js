@@ -143,6 +143,13 @@ class NewForm extends React.Component {
     e.preventDefault();
 
     this.props.createNewProgram(this.state);
+    this.setState({
+      ProgramType: '',
+      ProgramName: '',
+      DefaultCapacity: '',
+      AllowOnlineScheduling: false,
+      Type: [],
+    });
   }
 
   render() {
