@@ -11,7 +11,7 @@ import MoreCardsData from './MoreCardsData';
 const Container = styled.div`
   width: 100%;
   height: auto;
-  margin: 0 auto;
+  margin: 15px auto;
   padding: 10px;
 `;
 
@@ -20,7 +20,7 @@ const CardsContainer = styled.div`
   width: 242px;
   padding: 18px 0px 0px;
   background: white;
-  margin: 24px 20px 0px 0px;
+  margin: 0 20px 24px 0px;
   vertical-align: top;
   border: 1px solid #cdccbc;
   border-radius: 4px;
