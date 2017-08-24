@@ -1,60 +1,54 @@
-export const loadCards = (data) => {
-  return {
-    type: 'LOAD_CARDS',
-    data,
-  }
-};
+export const loadCards = data => ({
+  type: 'LOAD_CARDS',
+  data,
+});
 
-export const loadMoreCardsData = (data) => {
-  return {
-    type: 'LOAD_MORE_CARDS_DATA',
-    data,
-  }
-};
+export const loadMoreCardsData = data => ({
+  type: 'LOAD_MORE_CARDS_DATA',
+  data,
+});
 
-export const hideMore = (bool) => {
-  return {
-    type: 'HIDE_MORE',
-    isHidden: bool,
-  }
-};
+export const hideMore = bool => ({
+  type: 'HIDE_MORE',
+  isHidden: bool,
+});
 
-export const formIsVisible = (bool) => {
-  return {
-    type: 'FORM_VISIBLE',
-    isVisible: bool,
-  }
-}
+export const formIsVisible = bool => ({
+  type: 'FORM_VISIBLE',
+  isVisible: bool,
+});
 
-export const addNewCard = (data) => {
-  return {
-    type: 'ADD_CARD',
-    data,
-  }
-}
+export const addNewCard = data => ({
+  type: 'ADD_CARD',
+  data,
+});
 
-export const fetchCardData = () => {
-  return async (dispatch) => {
+export const fetchCardData = () => (
+  async (dispatch) => {
     try {
-      const data = await fetch('https://api.myjson.com/bins/5bdb3');
-      data.json().then(data => {
+      const response = await fetch('https://api.myjson.com/bins/5bdb3');
+      response.json().then((data) => {
         dispatch(loadCards(data));
       });
     } catch (err) {
       console.log('there was an error getting your data');
     }
-  };
-};
+  }
+);
 
-export const fetchMoreCardData = () => {
-  return async (dispatch) => {
-    try {
-      const data = await fetch('https://api.myjson.com/bins/47axv');
-      data.json().then(data => {
-        dispatch(loadMoreCardsData(data));
-      });
-    } catch (err) {
-      console.log('there was an error getting your data');
+export const fetchMoreCardData = () => (
+  async (dispatch, getState) => {
+    const state = getState();
+
+    if (state.moreCardData.length !== 0) {
+      try {
+        const response = await fetch('https://api.myjson.com/bins/47axv');
+        response.json().then((data) => {
+          dispatch(loadMoreCardsData(data));
+        });
+      } catch (err) {
+        console.log('there was an error getting your data');
+      }
     }
-  };
-};
+  }
+);
